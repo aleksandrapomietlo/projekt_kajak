@@ -4,12 +4,12 @@ from datetime import datetime
 class Route(models.Model):
     name = models.CharField(max_length=128)
     content = models.TextField()
-    route_map = models.ImageField(upload_to='/routes')
+    route_map = models.ImageField(upload_to='routes')
 
 class Kayak(models.Model):
     name = models.CharField(max_length=128)
     content = models.TextField()
-    kayak_image = models.ImageField(upload_to='/images')
+    kayak_image = models.ImageField(upload_to='images')
 
 class Form(models.Model):
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
