@@ -37,8 +37,14 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="/login">Zaloguj się</a>
-              <a class="nav-item nav-link" href="/register">Zarejestruj się</a>
+                {% if user.is_authenticated %}
+                    <a class="nav-item nav-link" href="/profile">Mój profil</a>
+                    <a class="nav-item nav-link" href="/upcoming">Moje spływy</a>
+                    <a class="nav-item nav-link" href="/logout">Wyloguj się</a>
+                {% else %}
+                    <a class="nav-item nav-link" href="/login">Zaloguj się</a>
+                    <a class="nav-item nav-link" href="/register">Zarejestruj się</a>
+                {% endif %}
             </div>
           </div>
         </div>
@@ -56,7 +62,6 @@
           {% endif %}
           {% block content %}{% endblock %}
         </div>
-
     </main>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -1,6 +1,7 @@
+from forms import ReservationForm
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.template.response import TemplateResponse
+from django.views.generic import TemplateView
 
 def home(request):
     return render(request, "home.html")
@@ -11,8 +12,14 @@ def routes(request):
     return render(request, "routes.html")
 def kayaks(request):
     return render(request, "kayaks.html")
-def reservation(request):
-    return render(request, "reservation.html")
+
+class ReservationView(TemplateView):
+    template_name = 'reservation.html'
+    def get(self, request):
+        form = ReservationForm()
+        return render(request, self.template_name, {'form': form})
+
+
 def gallery(request):
     return render(request, "gallery.html")
 def login(request):

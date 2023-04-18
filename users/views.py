@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
 
 def register(request):
@@ -9,8 +10,14 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f"Konto założone dla {username}. Możesz się zalogować")
-            return redirect('/login')
+            return ('login')
     else:
         form = UserRegisterForm()
     return render(request, 'register.html', {'form': form})
-# Create your views here.
+
+@login_required
+def profile(request):
+    return render(request, 'profile.html')
+@login_required
+def upcoming(request):
+    return render(request, 'upcoming.html')

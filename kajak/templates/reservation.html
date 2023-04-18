@@ -1,4 +1,70 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Rezerwacja</h1>
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
+</div>
+<!--    <form action="reservation" method="post">
+      {% csrf_token %}
+      <div class="elem-group">
+        <label for="name">Imię</label>
+        <input type="text" id="name" name="participant_name" placeholder="Jan" pattern=[A-Za-z]{1,32} required>
+      </div>
+      <div class="elem-group">
+        <label for="name">Nazwisko</label>
+        <input type="text" id="surnname" name="participant_name" placeholder="Kowalski" pattern=[A-Za-z]{1,32} required>
+      </div>
+      <div class="elem-group">
+        <label for="email">Adres e-mail</label>
+        <input type="email" id="email" name="participant_email" placeholder="jan.kowalski@email.com" required>
+      </div>
+      <div class="elem-group">
+        <label for="phone">Numer telefonu</label>
+        <input type="tel" id="phone" name="visitor_phone" placeholder="48-796-650-325" pattern=[0-9]{11} required>
+      </div>
+      <hr>
+      <div class="elem-group inlined">
+        <label for="participants">Uczestnicy</label>
+        <input type="number" id="participants" name="total_participant" placeholder="0" min="1" required>
+      </div>
+      <div class="elem-group inlined">
+        <label for="kayak">Ilość kajaków</label>
+        <input type="number" id="kayak" name="total_kayaks" placeholder="0" min="1" required>
+      </div>
+      <div class="elem-group inlined">
+        <label for="event-date">Data spływu</label>
+        <input type="date" id="event-date" name="event-date" required>
+      <div class="elem-group">
+          <label for="route-selection">Wybierz trasę</label>
+          <select id="route-selection" name="route" required>
+            <option value="">Wybierz trasę z listy</option>
+            <option value="connecting">Sławatycze - Jabłeczna</option>
+            <option value="adjoining">Sławatycze - Kodeń</option>
+            <option value="adjacent">Porosiuki - Biała Podlaska</option>
+            {% for kayak in Kayaks %}
+            <option value="">{{ kayak.name }}</option>
+            {% endfor %}
+          </select>
+      </div>
+      <div class="p-2">
+          <p>Płatność</p>
+          <div>
+            <input type="checkbox" name="transfer" id="transfer" value="Przelew"> <label for="transfer">Przelew</label>
+          </div>
+          <div>
+            <input type="checkbox" name="cash" id="cash" value="Gotówka"> <label for="cash">Gotówka</label>
+          </div>
+          <div>
+            <input type="checkbox" name="card" id="card" value="Karta"> <label for="card">Karta</label>
+          </div>
+      </div>
+      <hr>
+      <div class="elem-group">
+        <label for="message">Dodatkowe informacje</label>
+        <textarea id="message" name="participant_message" placeholder="Wyślij wiadomość do organizatora" required></textarea>
+      </div>
+      <button type="submit">Wyślij</button>
+    </form> -->
 {% endblock content %}
