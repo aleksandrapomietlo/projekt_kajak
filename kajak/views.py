@@ -1,6 +1,6 @@
-from forms import ReservationForm
+from .forms import ReservationForm
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
 
 def home(request):
@@ -13,12 +13,27 @@ def routes(request):
 def kayaks(request):
     return render(request, "kayaks.html")
 
-class ReservationView(TemplateView):
-    template_name = 'reservation.html'
-    def get(self, request):
-        form = ReservationForm()
-        return render(request, self.template_name, {'form': form})
+def reservation(request):
+    submitted = False
+    if request.method == "POST":
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/reservation?submitted=True')
+    else:
+        form = ReservationForm
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, "reservation.html", {'form':form, 'submitted':submitted})
 
+#class Reservation(TemplateView):
+    #def get(self, request):
+     ##  return render(request, 'reservation.html', {'form': form})
+    #def post(self, request, res_id):
+     #   p = ReservationForm.objects.get(pk=res_id)
+      #  f = ReservationForm(request.POST, instance=p)
+       ##    f.save()
+         #   return render(request, "home.html")
 
 def gallery(request):
     return render(request, "gallery.html")

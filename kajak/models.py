@@ -19,7 +19,10 @@ class Kayak(models.Model):
     seats = models.IntegerField(choices=SEAT_NUMBER)
     kayak_image = models.ImageField(upload_to='images')
 
-class Form(models.Model):
+class Message(models.Model):
+    text = models.TextField()
+
+class Reservation(models.Model):
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
     date = models.DateField()
     name = models.CharField(max_length=128)
@@ -29,11 +32,10 @@ class Form(models.Model):
     phone_number = models.CharField(max_length=12)
     payment = models.BooleanField()
     mail = models.EmailField(max_length=128)
+    message = models.OneToOneField(Message, on_delete=models.CASCADE)
 
 
-class planned(models.Model):
+class Planned(models.Model):
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
     date = models.DateField()
 
-class message(models.Model):
-    text = models.TextField()

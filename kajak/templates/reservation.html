@@ -1,10 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-    </form>
+    <h1>Zarezerwuj</h1>
+    <br/><br/>
+    {% if submitted %}
+        Twoja rezerwacja została wysłana
+
+    {% else %}
+
+        <form action="" method=POST>
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit" value="Wyślij" class="btn btn-secondary">
+        </form>
+    {% endif %}
+
 </div>
 <!--    <form action="reservation" method="post">
       {% csrf_token %}
